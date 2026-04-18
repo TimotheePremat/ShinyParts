@@ -1,134 +1,160 @@
-This is a simple, user-friendly R script intended to provide visualisations of
-parts of texts for textometrics. It is distributed under GNU-GPL 3 license.
-It has been developed by Timothée Premat, then postdoctoral researcher at Univ.
-Paris-Est Créteil (Céditec lab. & associated to Modyco lab.) in the ArchivU
-project (<https://archivu.hypotheses.org>).
+# ShinyParts
 
-# Requisites
+ShinyParts is a user-friendly R-based tool designed to visualise the distribution
+of textual environments within corpora, for use in textometrics and corpus
+linguistics. It is distributed under the GNU-GPL 3 license.
 
-Script only uses R; the needed packages are downloaded if missing and loaded
-automatically.
+It was developed by Timothée Premat, postdoctoral researcher at Université
+Paris-Est Créteil (Céditec lab., associated with Modyco lab.), as part of the
+ArchivU project (<https://archivu.hypotheses.org>).
 
-# Run the script
+## Citation
 
-Open `main.R` in your R software (R, RStudio, etc.) and run it. A Graphic User
-Interface (GUI) should then open in a web browser.
+To cite this tool in academic work, please use:
 
-# What does it do?
+> Premat, Timothée (2026). *ShinyParts: An R tool to map the distribution of
+environments in texts*. https://github.com/TimotheePremat/ShinyParts
 
-This script is intended to allow for the visualisation of the size and position
-of environments in texts, based on extraction from corpus linguistics software
-such as TXM. It also produces a number of graphs describing the distribution of
-envs in the corpus.
+The following paper provides the first published use of ShinyParts:
 
-The Shiny graphic user interface (GUI) allows the user to apply some changes to
-the dataset and to customise the plots. Plots are not automatically saved; user
-must save them through the GUI before closing the app.
+> Lethier, Virginie, Émilie Née and Timothée Premat (2026). "Des dynamiques
+entre un genre de discours et un agencement textuel : le cas de la liste dans
+les rapports d'activité de laboratoire (1970-2018)". [To appear in the
+proceedings of the 2026 CMLF congress]
 
-### Plot produced
+## Requirements
 
-Environments are plots against the rest of the text, called `background` (every
-word of the text(s) that is not parsed into one of the studied environment).
+ShinyParts runs entirely in R. Required packages are automatically installed
+if missing and loaded at startup.
 
-> The following examples come from the work of the ArchivU project, in particular our work on
-lists in academic reporting. `liste-vert` is short for `vertical lists`, and
-'listes-horiz' is short for `horizontal lists`, i.e. lists inline.
+## Getting started
 
-#### Description of envs in corpus
-The program produces the following plots:
+Open `main.r` in your R environment (R, RStudio, etc.) and run it. A
+graphical user interface (GUI) will open in your default web browser.
 
-#### Relative size of the environments
-<img src="https://phonodiachro.hypotheses.org/files/2025/11/qty_plot_2025-11-06-scaled.png" alt="Plot of size of texts in a corpus of French academic reporting" width="500">
+## Overview
 
-#### Size of the texts of the corpus
-<img src="https://phonodiachro.hypotheses.org/files/2025/11/size_plot_2025-11-06-scaled.png" alt="Plot of relative size of lists in a corpus of French academic reporting" width="700">
+ShinyParts allows users to visualise the size and position of textual
+environments within a corpus, based on data extracted from corpus linguistics
+software such as TXM. It also produces a set of graphs describing the
+distribution of environments across the corpus.
 
-#### Chronological evolution of the relative size of the environments
-<img src="https://phonodiachro.hypotheses.org/files/2025/11/time_series_2025-11-06-scaled.png" alt="Plot of the chronology of relative size of lists in a corpus of French academic reporting" width="700">
+The Shiny GUI allows users to modify the dataset and customise plots.
+Plots are not saved automatically — they must be exported through the GUI
+before closing the application.
 
-#### Mapping of envs onto text lenght
-<img src="https://phonodiachro.hypotheses.org/files/2025/11/map_all_2025-11-06-1.png" alt="Plot mapping the lists onto text lenght in a corpus of French academic reporting" width="700">
+## Plots produced
 
-Where:
-- every word of the text is mapped by position (from left to right: x-axis)
-- y-axis is meaningless
-- colours match a typological information (here: type of list)
-- both individual plots and plot of all the texts are available
+Environments are plotted against the *background* — defined as every token in
+the text that does not belong to any of the studied environments.
+
+> The examples below come from the ArchivU project, specifically work on lists
+in French academic reporting. `liste-vert` refers to vertical lists;
+`listes-horiz` refers to horizontal (inline) lists.
+
+### Relative size of environments in the corpus
+
+<img src="https://phonodiachro.hypotheses.org/files/2025/11/qty_plot_2025-11-06-scaled.png"
+alt="Plot of the relative size of lists in a corpus of French academic reporting" width="500">
+
+### Size of texts in the corpus
+
+<img src="https://phonodiachro.hypotheses.org/files/2025/11/size_plot_2025-11-06-scaled.png"
+alt="Plot of text sizes in a corpus of French academic reporting" width="700">
+
+### Chronological evolution of the relative size of environments
+
+<img src="https://phonodiachro.hypotheses.org/files/2025/11/time_series_2025-11-06-scaled.png"
+alt="Plot of the chronological evolution of list size in a corpus of French academic reporting" width="700">
+
+### Mapping of environments onto text length
+
+<img src="https://phonodiachro.hypotheses.org/files/2025/11/map_all_2025-11-06-1.png"
+alt="Plot mapping lists onto text length in a corpus of French academic reporting" width="700">
+
+In this plot:
+- each token is mapped by its position within the text (left to right: x-axis)
+- the y-axis carries no meaning
+- colours encode typological information (here: list type)
+- both individual text plots and a full-corpus overview are available
 
 ## Input files
 
-The script works with two input methods, either:
-- **Multi-file method**: one file comprising all the words of the corpus and
-one file per environment comprising all the words of this environment, with their
-type as file name.
-- **One file method**: one file comprising all the words of the corpus and one
-file comprising all the words of the environments to be studied, with their type
-in one or several columns.
+ShinyParts accepts two input methods:
 
-> Following our example above, the second file would contain all the words
-belonging to a list.
+- **Multi-file method**: one file containing all tokens of the corpus, and one
+file per environment type containing all tokens belonging to that environment
+(with the environment type as the filename).
+- **One-file method**: one file containing all tokens of the corpus, and one
+file containing all tokens belonging to the environments under study, with
+environment types encoded in one or more columns.
 
-In all cases, the following requisites apply:
-- a column must contain a date information
-- a column must contain a unique text-ID
-- a column must contain the number the word in the text
-- there should be only one token per line (usually, one word)
+> In the example above, the second file would contain all tokens belonging to a list.
 
-For the *One file method* (which mean: one file *for the environments*, not in total),
-there is an additional requisite:
-- one or several columns must contain the type of environment applied to the word
+In both cases, the dataset must include:
+- a column with date information
+- a column with a unique text identifier
+- a column with the token's position within its text
+- one token per row (typically, one word per line)
 
-The *One file method* allows to deal with nested environments, with one column
-for envs of level 1, one for envs of level 2, and so on. The GUI asks the user
-if they want to favour low-lavel or high-level envs, by keeping the first or last
-non-null value in the set of columns defined as containing nesting types.
+For the *one-file method*, an additional requirement applies:
+- one or more columns must encode the environment type assigned to each token
 
-The GUI asks the user to select the obligatory columns, so that columns names in
-the imported dataset is irrelevant.
+The one-file method is the default, to activate multi-file method (typological
+information stored in columns), turn on the *Manually set type* switch.
 
-## For use with TXM
+The one-file method supports **nested environments**, with one column per
+nesting level. Low-level environments are always favoured (i.e., a word belonging
+to a environment in another environment is attributed to the lowest environment
+only).
 
-Datasets can be produced through different corpus linguistics softwares. For use
-with TXM, the French textometry software, one can follow this procedure:
-- use concordancer
-- empty right and left context (useless and heavy)
-- parse into col Reference the needed metadata (obligatory: text_id, n, date)
+The GUI prompts the user to identify the required columns, so column names in
+the imported dataset are not constrained.
 
-To access words comprised in environments in TXM CQL queries, you can simply
-put the name of the environment between brackets. `[list]` outputs every word that
-is parsed under a `<list>` node in the XML structure.
+## Use with TXM
 
-To access words belonging to an environment of a given type, you can use the `_.`
-syntax: `[._list_type="inline"]` outputs every word that is parsed under a `<list type="inline">`
-node in the XML structure.
+Datasets can be produced using various corpus linguistics tools. For use with
+TXM (the French textometry platform), the recommended procedure is:
 
-By default, such queries do not access nesting and only 'sees' the first level.
-During import, TXM appends indices to nested structural properties, so that a nested
-env has a different name than a non-nested one: `[_.list_type1="inline"]` outputs
-every word that is parsed under a `<list type="inline">` node itself parsed under another
-`<list>` node in the XML structure.
+- use the concordancer
+- set both left and right context to empty (they are unnecessary and add weight)
+- encode the required metadata in the Reference column (mandatory: `text_id`, `n`, `date`)
 
-For the plots exemplified above, using the *Multi-file* input method, the queries used are:
-- `[]` to capture every word of the texts
-- `[_.list_type="inline"]` to capture words that are part of inline lists
-- `[_.list_type!="inline"]` to capture words that are part of non-inline lists
-(if there are several type of lists that are not inline, e.g. "numbered", "bulleted")
+### Querying environments in TXM
 
-## Caveat
+To retrieve all tokens belonging to an environment, place its name in brackets:
+`[list]` returns every token parsed under a `<list>` node in the XML structure.
 
-### A note on overlapping
-On the textograph, overlapping between environments is to be avoided by carefully designing the queries in the corpus query software (or other). For instance, if
-one wants to work on lists and headings,
-and if lists have headings, they should design requests for headings that are not
-list-headings, lists bodies (excluding the headings), and list-headings.
-Stacking of bars in a graph signals overlapping.
+To filter by environment type, use the `_.` syntax:
+`[._list_type="inline"]` returns every token under a `<list type="inline">` node.
 
-> Background always overlap envs; the script deletes from background every word
-that is found in envs (based on text-ID and number match)
+By default, TXM queries do not recurse into nested structures. During import,
+TXM appends indices to structural properties of nested elements, so that:
+`[_.list_type1="inline"]` returns tokens under a `<list type="inline">` node
+that is itself nested inside another `<list>` node.
 
+For the plots shown above, the following queries were used with the multi-file method:
+- `[]` — all tokens in the corpus
+- `[_.list_type="inline"]` — tokens belonging to inline lists
+- `[_.list_type!="inline"]` — tokens belonging to non-inline lists (e.g. numbered, bulleted)
 
-### A note on performance
-For large corpora, the computational load can be heavy. In such cases, the Shiny
-interface might take a few seconds to refresh after each operation. This might
-be a bit frustrating, be patient, nothing shows up but the script is (probably)
-just doing its thing.
+## Caveats
+
+### Overlapping environments
+
+Overlapping environments should be avoided by carefully designing queries in
+the corpus software. For instance, if studying both lists and headings where
+lists may contain headings, one should define separate queries for:
+list headings, list bodies (excluding headings), and standalone headings.
+
+Overlapping environments will appear as stacked bars in the plots.
+
+> The background always overlaps with environments by construction. ShinyParts
+automatically removes from the background any token found in an environment,
+based on text-ID and position matching.
+
+### Performance
+
+For large corpora, processing can be computationally intensive. The Shiny
+interface may take several seconds to refresh after each operation. This is
+expected behaviour — the application is processing in the background.
