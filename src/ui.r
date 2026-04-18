@@ -356,66 +356,85 @@ ui <- page_navbar(
   nav_panel("References", value="ref_tab",
     card(
       h4("References"),
-      p(HTML("ShinyParts is an R script designed to facilitate the study of location and size of
-        textual sequences (called 'environments', or 'envs') in a text or in a corpus of texts.
-        It uses an HTML Graphic User Interface through Shiny, but runs locally on your computer.<br/>
-        It has been developped by Timothée Premat for the ArchivU Project.")),
-      p(HTML("To cite ShinyParts, please use the following short citation formula. You can also consider including the reference
-        to the paper in which it was first introduced (Lethier, Née and Premat 2026).
-        <ul>
-          <li>Premat, Timothée (2025). 'ShinyParts, a R script to <em>see</em> parts of texts'.
-          Url: <a href='https://github.com/TimotheePremat/ShinyParts' target='_blank'>https://github.com/TimotheePremat/ShinyParts</a></li>
-          <li>Léthier, Virginie, Emilie Née and Timothée Premat (2026). Des dynamiques entre un genre de discours et un agencement textuel :
-        le cas de la liste dans les rapports d’activité de laboratoire (1970-2018). In <em>Proceedings of the
-        Congrès Mondial de Linguistique Français (CMLF) 2026</em>, Arras.</li>
-        </ul>")),
+      p(HTML("ShinyParts is an R tool designed to facilitate the study of the location 
+  and size of textual sequences — referred to as <em>environments</em> (or 
+  <em>envs</em>) — within individual texts or corpora. It provides a graphical 
+  user interface (GUI) through Shiny, and runs locally on your computer.<br/>
+  ShinyParts was developed by Timothée Premat for the ArchivU project.")),
+      p(HTML("To cite ShinyParts, please use the following reference. You may also 
+  consider citing the paper in which it was first used (Lethier, Née and Premat 2026).
+  <ul>
+    <li>Premat, Timothée (2026). <em>ShinyParts: An R tool to map the distribution 
+    of environments in texts</em>. 
+    <a href='https://github.com/TimotheePremat/ShinyParts' target='_blank'>
+    https://github.com/TimotheePremat/ShinyParts</a></li>
+    <li>Lethier, Virginie, Émilie Née and Timothée Premat (2026). Des dynamiques 
+    entre un genre de discours et un agencement textuel : le cas de la liste dans 
+    les rapports d'activité de laboratoire (1970-2018). In <em>Proceedings of the 
+    Congrès Mondial de Linguistique Française (CMLF) 2026</em>, Arras.</li>
+  </ul>")),
+      
       h5("Types of plots"),
-      p(HTML("ShinyParts produces:
-        <ul>
-          <li>General, descriptive plots about the corpus:<ul>
-            <li>A plot with the relative quantity of tokens for each environment,</li>
-            <li>A plot with the size of each text in a longitudinal setting,</li>
-            </ul></li>
-          <li>A time series plot which, with a longitudinal corpus, shows the evolution
-            of the relative size of environments,</li>
-          <li>A so-called Textogram plot, showing for a text or a collection of text,
-            the place and size of environments in the lenght of the text.</li>
-        </ul>
-        Textogram plots try to represent a text as a succession of textual or
-        discursive elements, defined by their type, their location and their lenght.")),
+      p(HTML("ShinyParts produces the following plots:
+  <ul>
+    <li>Descriptive corpus-level plots:
+      <ul>
+        <li>Relative quantity of tokens per environment,</li>
+        <li>Size of each text, suitable for longitudinal corpora.</li>
+      </ul>
+    </li>
+    <li>A time series plot showing the evolution of the relative size of 
+    environments over time (for longitudinal corpora),</li>
+    <li>A <em>textogram</em>: a plot representing the position and size of 
+    environments across the length of a text or collection of texts.</li>
+  </ul>
+  The textogram represents a text as a succession of textual or discursive 
+  elements, characterised by their type, location, and length.")),
+      
       h5("Background"),
-      p(HTML("ShinyParts has been developped for the ArchivU project, a collective enterprise
-        to study records produced in French Universities from the 70s to nowadays. The ArchivU
-        project was supported by the LabEx <em>Les passés dans le présent</em> (ANR-11-LABX-0026-01).
-        The developer of ShinyParts, Timothée Premat, was a postdoctoral researcher in NLP and corpus
-        linguistics within the ArchivU project, funded by the University Paris Est Créteil.<br/>
-        ShinyParts originated from the need to visualise the place of lists (as discursive devices) in lab. reports and was
-        designed with Virginie Léthier and Emilie Née.")),
+      p(HTML("ShinyParts was developed for the ArchivU project, a collective research 
+  enterprise studying administrative records produced in French universities from 
+  the 1970s to the present. The ArchivU project was supported by the LabEx 
+  <em>Les passés dans le présent</em> (ANR-11-LABX-0026-01). Timothée Premat 
+  was a postdoctoral researcher in NLP and corpus linguistics within the project, 
+  funded by Université Paris-Est Créteil.<br/>
+  ShinyParts originated from the need to visualise the position and extent of 
+  lists as discursive devices in laboratory reports, and was designed in 
+  collaboration with Virginie Lethier and Émilie Née.")),
+      
       h4("Short documentation"),
       h5("Input files"),
-      p(HTML("ShinyPart accepts .csv/.tsv, tab separated input files with the following requisites:")),
+      p(HTML("ShinyParts accepts <code>.csv</code> or <code>.tsv</code> (tab-separated) 
+  files with the following requirements:")),
       HTML("
-        <ul>
-          <li>One row = one token (most of the time, a word),</li>
-          <li>One column should contain a unique text ID</li>
-          <li>One column should contain the location of the token in its text (i.e., the ordinal number of the token),</li>
-          <li>One column should contain a date metadata. If only year is provided, ShinyParts default to January 1st for plotting,</li>
-          <li>At least one column should contain the env type of the token.</li>
-        </ul>"),
-      p(HTML("
-        If your text(s) is comprised of nested environments, several columns should be used for the depth of the nesting,
-        (for instance <code>colA</code> is type of non-nested env., <code>colB</code> is type of first level of nested env., etc.).
-        ShinyPart allows the flattening of the nested structure by keeping only the deepest available type for each token (so that a token
-        that belong to a <code>typeB</code> nested into a <code>typeA</code> is only associated to <code>typeB</code>),
-        by selecting the columns for each level of nesting.")),
-      h6(HTML("Producing input files with TXM")),
-      p(HTML("ShinyParts input logic originates from the use of TXM, one of the standard for (french) textometry. To produce
-      the 'background' and the 'env' dataframes, use a concordancer and call for every token (with empty brackets : <code>[]</code>).<br/>
-      Add the relevant columns into the <code>Reference</code> col. in TXM concordancer and empty left and right context (this will make the files lighter).
-      If you have nested envs, make sure to add as many column as there are levels of nesting for your env. Remember that, while TXM (because it uses CWB) represents
-      depth by adding intergrals to attributes of envs, it does not add an integral to the surface-level (non-nested env).
-      So that, if you have three levels of nesting for an env., columns should be <code>env_type</code>,
-      <code>env_type1</code> and <code>env_type2</code>."))
+  <ul>
+    <li>One row per token (typically, one word),</li>
+    <li>One column containing a unique text identifier,</li>
+    <li>One column containing the position of the token within its text 
+    (i.e. its ordinal number),</li>
+    <li>One column containing date metadata — if only a year is provided, 
+    ShinyParts defaults to January 1st for plotting purposes,</li>
+    <li>At least one column containing the environment type of the token.</li>
+  </ul>"),
+      p(HTML("If the corpus contains nested environments, each level of nesting should 
+  be encoded in a separate column (e.g. <code>colA</code> for the type of 
+  non-nested environments, <code>colB</code> for the first level of nesting, 
+  and so on). ShinyParts can flatten this nested structure by retaining only 
+  the deepest available type for each token — so that a token belonging to a 
+  <code>typeB</code> environment nested within a <code>typeA</code> environment 
+  will be associated with <code>typeB</code> only.")),
+      
+      h6("Producing input files with TXM"),
+      p(HTML("ShinyParts' input format is designed with TXM in mind, one of the standard 
+  platforms for (French) textometry. To produce the background and environment 
+  dataframes, use the concordancer with an empty query (<code>[]</code>) to 
+  retrieve all tokens. Add the relevant metadata to the <code>Reference</code> 
+  column, and clear the left and right context fields to reduce file size.<br/>
+  For nested environments, include one column per nesting level. Note that TXM 
+  (via CWB) appends integers to structural attribute names to indicate nesting 
+  depth, but does not append anything to the surface level. For an environment 
+  with three nesting levels, the columns should therefore be named 
+  <code>env_type</code>, <code>env_type1</code>, and <code>env_type2</code>."))
     )
   ),
 
