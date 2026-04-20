@@ -6,7 +6,8 @@ linguistics. It is distributed under the GNU-GPL 3 license.
 
 It was developed by Timothée Premat, postdoctoral researcher at Université
 Paris-Est Créteil (Céditec lab., associated with Modyco lab.), as part of the
-ArchivU project (<https://archivu.hypotheses.org>).
+ArchivU project (<https://archivu.hypotheses.org>) and in close collaboration
+with Virginie Lethier and Émilie Née.
 
 ## Citation
 
