@@ -57,20 +57,28 @@ in French academic reporting. `liste-vert` refers to vertical lists;
 <img src="https://phonodiachro.hypotheses.org/files/2025/11/qty_plot_2025-11-06-scaled.png"
 alt="Plot of the relative size of lists in a corpus of French academic reporting" width="500">
 
+Plot showing the relative size of lists in a corpus of French academic reporting.
+
 ### Size of texts in the corpus
 
 <img src="https://phonodiachro.hypotheses.org/files/2025/11/size_plot_2025-11-06-scaled.png"
 alt="Plot of text sizes in a corpus of French academic reporting" width="700">
+
+Plot showing the size of texts in a corpus of French academic reporting.
 
 ### Chronological evolution of the relative size of environments
 
 <img src="https://phonodiachro.hypotheses.org/files/2025/11/time_series_2025-11-06-scaled.png"
 alt="Plot of the chronological evolution of list size in a corpus of French academic reporting" width="700">
 
+Plot showing the chronological evolution of list size in a corpus of French academic reporting.
+
 ### Mapping of environments onto text length
 
 <img src="https://phonodiachro.hypotheses.org/files/2025/11/map_all_2025-11-06-1.png"
 alt="Plot mapping lists onto text length in a corpus of French academic reporting" width="700">
+
+Plot mapping lists onto text length in a corpus of French academic reporting.
 
 In this plot:
 - each token is mapped by its position within the text (left to right: x-axis)
